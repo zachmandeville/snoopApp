@@ -23,7 +23,7 @@
      "x": {
        "field": "total",
        "type": "quantitative",
-       "title": "Stable Endpoints Introduced This Release",
+       "title": "Untested & Tested Endoints From this Release",
        "axis":{
          "labelFontSize": 16,
          "titleFontSize": 18,
@@ -37,7 +37,7 @@
      "color": {
        "field": "type",
        "type": "nominal",
-       "scale": {"range": ["#FF4136", "#19A974"]},
+       "scale": {"range": ["#19A974","#FF4136"]},
        "legend": {"labelFontSize": 16}
      }
    },
@@ -45,11 +45,17 @@
  };
 
  onMount(() => {
-   embed("#still-untested", spec, {actions: true})
+   embed("#coverage-per-release_chart", spec, {actions: true})
      .catch(err => console.log('error in still untested chart', err));
  })
  {
  }
 </script>
 
-<div id="still-untested"></div>
+<div id="coverage-per-release_chart"></div>
+
+<style>
+ div {
+   margin-top: 2rem;
+ }
+</style>

@@ -293,19 +293,19 @@ export const formattedProgress = derived(
   }
 );
 
-export const stillUntested = derived(
-  conformanceProgressRaw,
+export const coveragePerReleaseRaw = writable([]);
+
+export const coveragePerRelease = derived(
+  coveragePerReleaseRaw,
   ($cpr, set) => {
     if ($cpr.length === 0) {
-      set([]) ;
+      set([]);
     } else {
-      let ratioSet = $cpr
-          .filter(({release}) => release !== '1.8.0')
-          .map(({release, total}) => ({
-            release,
+      let ratioSet = $cpr.map(({release, tested, untested}) => ({
+            release: release === "1.5.0" ? "1.5.0 and Earlier" : release,
             total: {
-              tested: total.new_tested,
-              still_untested: (total.still_untested * -1)
+              tested,
+              untested: (untested * -1) // this is to make it show as split ratio graph
             }
           }));
 
